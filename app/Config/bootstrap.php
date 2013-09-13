@@ -107,3 +107,6 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+//DebugKit plugin added for better debug of CakePHP apps
+CakePlugin::load('DebugKit');
