@@ -16,7 +16,7 @@ class UsersController extends AppController
     function beforeFilter()
     {
         //forgetPassword access without authentication
-        $this->Auth->allow('forgetPassword');
+        $this->Auth->allow('forgetPassword', 'signup');
     }
     /**
      * @method index
@@ -69,5 +69,21 @@ class UsersController extends AppController
     {
         $this->set('title_for_layout', "Password retrieval assistance");
         $this->Session->setFlash('Retrieve password!');
+    }
+
+    /**
+     * @method signup method to create account by clients
+     */
+    public function signup()
+    {
+        $this->set('title_for_layout', "Signup to access");
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('Signup has been completed!'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Registration failed! Try again.'));
+        }
     }
 }
