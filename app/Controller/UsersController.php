@@ -13,6 +13,11 @@ App::uses('Controller', 'Controller');
 
 class UsersController extends AppController
 {
+    function beforeFilter()
+    {
+        //forgetPassword access without authentication
+        $this->Auth->allow('forgetPassword');
+    }
     /**
      * @method index
      * Home page of restricted member area.
@@ -39,7 +44,20 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        $this->set('title_for_layout', "Logout");
-        $this->Session->setFlash('Logout successful');
+        if($this->redirect($this->Auth->logout())){
+            $this->Session->setFlash('Logout successful');
+        }else{
+            $this->redirect(array('Controller' => 'Users', 'Action' => 'login'));
+        }
+    }
+
+    /**
+     * @method forgetPassword
+     * Retrieve password
+     */
+    public function forgetPassword()
+    {
+        $this->set('title_for_layout', "Password retrieval assistance");
+        $this->Session->setFlash('Retrieve password!');
     }
 }
