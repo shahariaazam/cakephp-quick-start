@@ -98,4 +98,27 @@ class UsersController extends AppController
             $this->Session->setFlash(__('Registration failed! Try again.'));
         }
     }
+
+    function changePassword()
+    {
+        if($this->request->is('post')){
+            $oldPassEncr = AuthComponent::password($this->request->data['Users']['password']);
+            $userId = $this->Auth->User('id');
+            $userLoginInfo = $this->User->find('first', array('conditions'=>array('User.id'=>$userId)));
+            if($userLoginInfo['User']['password'] === $oldPassEncr){
+                if($this->request->data['Users']['newpassword'] === $this->request->data['Users']['renewpassword']){
+                    $this->User->id = $userId;
+                    if($this->User->saveField('password', $this->request->data['Users']['newpassword'])){
+                        $this->Session->setFlash("Password changed successfully");
+                    }else{
+                        $this->Session->setFlash("Something wrong! Try again later.");
+                    }
+                }else{
+                    $this->Session->setFlash("New passwords mismatch");
+                }
+            }else{
+                $this->Session->setFlash("Old password wrong!");
+            }
+        }
+    }
 }
