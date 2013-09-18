@@ -1,6 +1,7 @@
 <?php
 /**
  * This is email configuration file.
+ * Gmail default info added
  *
  * Use it to configure email transports of Cake.
  *
