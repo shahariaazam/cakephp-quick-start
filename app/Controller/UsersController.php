@@ -16,7 +16,7 @@ class UsersController extends AppController
     function beforeFilter()
     {
         //forgetPassword access without authentication
-        $this->Auth->allow('forgetPassword', 'signup');
+        $this->Auth->allow('forgetPassword', 'signup', 'forgetPasswordLast');
     }
 
     /**
@@ -72,7 +72,47 @@ class UsersController extends AppController
     public function forgetPassword()
     {
         $this->set('title_for_layout', "Password retrieval assistance");
-        $this->Session->setFlash('Retrieve password!');
+        if($this->request->is('post')){
+            $userInfo = $this->User->find('first', array('conditions'=>array('User.username' => $this->request->data['Users']['email'])));
+            if(!empty($userInfo)){
+                $this->Cookie->write('forgetPasswordEmailPut', $userInfo['User']['username']);
+                var_dump($this->Cookie->read('forgetPasswordEmailPut'));
+                $this->redirect(array('controller'=>'Users', 'action'=>'forgetPasswordLast'));
+            }else{
+                $this->Session->setFlash("Wrong email address!");
+            }
+        }
+    }
+
+    public function forgetPasswordLast()
+    {
+        if($this->request->is('post')){
+            $userInfo = $this->User->find('first', array('conditions'=>array('User.username'=>$this->Cookie->read('forgetPasswordEmailPut'))));
+            $this->loadModel('Profile');
+            $profileInfo = $this->Profile->find('first', array('conditions'=>array('Profile.security_answer_1'=>$this->request->data['Profile']['security_answer'], 'Profile.user_id' => $userInfo['User']['id'])));
+            if(!empty($profileInfo)){
+                $randomPassword = rand(rand(1111,9999), rand(11111,99999));
+                $this->send_mail($userInfo['User']['username'], $profileInfo['Profile']['first_name'], $randomPassword);
+                $this->User->id = $userInfo['User']['id'];
+                if($this->User->saveField('password', $randomPassword)){
+                    $this->Session->setFlash("Password sent to your email.");
+                    $this->redirect(array('controller'=>'Users','action'=>'login'));
+                }
+            }else{
+                $this->Session->setFlash("Something wrong!");
+            }
+        }
+        $this->set('title_for_layout', "Password retrieval assistance");
+        $emailAddress = $this->Cookie->read('forgetPasswordEmailPut');
+        if(empty($emailAddress)){
+            $this->Session->setFlash("Something wrong!");
+            $this->redirect(array('controller'=>'users', 'action'=>'forgetPassword'));
+        }else{
+            $userInfo = $this->User->find('first', array('conditions'=>array('User.username'=>$emailAddress)));
+            $this->loadModel('Profile');
+            $profileInfo = $this->Profile->find('first', array('conditions'=>array('Profile.user_id'=>$userInfo['User']['id'])));
+            $this->set('profiles', $profileInfo);
+        }
     }
 
     /**

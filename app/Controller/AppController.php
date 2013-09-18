@@ -33,6 +33,17 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $components = array('Auth', 'Session', 'DebugKit.Toolbar');
+    public $components = array('Auth', 'Session', 'Cookie', 'DebugKit.Toolbar');
 
+    public function send_mail($receiver = null, $name = null, $pass = null)
+    {
+        $message = 'Hi,' . $name . ', Your Password is: ' . $pass;
+        App::uses('CakeEmail', 'Network/Email');
+        $email = new CakeEmail('gmail');
+        $email->from(array('yourname@youremail.com' => 'CakePHP Quick Start'));
+        $email->emailFormat('both');
+        $email->to($receiver);
+        $email->subject('Password retrieval');
+        $email->send($message);
+    }
 }

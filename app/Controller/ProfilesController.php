@@ -23,7 +23,7 @@ class ProfilesController extends AppController
     {
         if($this->request->is('put')){
             $this->Profile->id = $this->request->data['Profile']['id'];
-            if($this->Profile->save($this->request->data)){
+            if($this->Profile->saveAll($this->request->data)){
                 $this->Session->setFlash("Profile has been update");
             }else{
                 $this->Session->setFlash("Something wrong! Try again.");
