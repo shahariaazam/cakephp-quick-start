@@ -19,6 +19,10 @@ class ProfilesController extends AppController
         $this->set('profile', $profileInfo);
     }
 
+    /**
+     * @param null $id
+     * Update profile
+     */
     public function edit($id = null)
     {
         if($this->request->is('put')){
