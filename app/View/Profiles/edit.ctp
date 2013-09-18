@@ -2,7 +2,9 @@
 $this->Session->flash();
 ?>
 <h1>Member profile</h1>
-<?php echo $this->Html->link('Update profile', array('controller' => 'Profiles', 'action' => 'edit'));?>
+<p>
+    <?php echo $this->Html->link('Profile', array('controller'=>'Profiles', 'action'=>'index'));?> &raquo; <?php echo $this->Html->link('Profile Update', array('controller'=>'Profiles', 'action'=>'edit'));?> &raquo; <?php echo $this->Html->link('Change Password', array('controller'=>'Users', 'action'=>'changePassword'));?> &raquo; <?php echo $this->Html->link('Logout', array('controller'=>'Users', 'action'=>'logout'));?>
+</p>
 <hr>
 <?php echo $this->Form->create('Profile');?>
 <table>
