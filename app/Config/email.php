@@ -89,4 +89,16 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
+    /**
+     * @var array
+     * SMTP configuration for Gmail (default)
+     * Change it with your own username and password
+     */
+    public $gmail = array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => 465,
+        'username' => 'yourname@gmail.com',
+        'password' => 'youremailpassword',
+        'transport' => 'Smtp'
+    );
 }
