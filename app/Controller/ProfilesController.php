@@ -18,4 +18,23 @@ class ProfilesController extends AppController
         $profileInfo = $this->Profile->find('first',array('conditions'=>array('Profile.user_id' => $this->Auth->User('id'))));
         $this->set('profile', $profileInfo);
     }
+
+    public function edit($id = null)
+    {
+        if($this->request->is('put')){
+            $this->Profile->id = $this->request->data['Profile']['id'];
+            if($this->Profile->save($this->request->data)){
+                $this->Session->setFlash("Profile has been update");
+            }else{
+                $this->Session->setFlash("Something wrong! Try again.");
+            }
+        }
+        if(!empty($id)){
+            $userId = $id;
+        }else{
+            $userId = $this->Auth->User('id');
+        }
+        $profileInfo = $this->Profile->find('first',array('conditions'=>array('Profile.user_id' => $userId)));
+        $this->set('profile', $profileInfo);
+    }
 }
