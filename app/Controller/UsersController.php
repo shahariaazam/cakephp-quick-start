@@ -18,6 +18,7 @@ class UsersController extends AppController
         //forgetPassword access without authentication
         $this->Auth->allow('forgetPassword', 'signup');
     }
+
     /**
      * @method index
      * Home page of restricted member area.
@@ -25,7 +26,10 @@ class UsersController extends AppController
     public function index()
     {
         $this->User->recursive = 0;
-        $this->set('users', $this->User->find('first', array('conditions'=>array('User.id'=>$this->Auth->user('id')))));
+        $this->set(
+            'users',
+            $this->User->find('first', array('conditions' => array('User.id' => $this->Auth->user('id'))))
+        );
         $this->set('title_for_layout', "Member area");
         $this->Session->setFlash('Welcome to your member area!');
     }
@@ -38,11 +42,11 @@ class UsersController extends AppController
     {
         $this->set('title_for_layout', "Authenticate yourself");
 
-        if($this->request->is('post')){
-            if($this->Auth->login()){
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
                 $this->Session->setFlash('Login successfully');
-                $this->redirect(array('controller'=>'Users', 'action'=>'index'));
-            }else{
+                $this->redirect(array('controller' => 'Users', 'action' => 'index'));
+            } else {
                 $this->Session->setFlash("Login failed");
             }
         }
@@ -54,9 +58,9 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        if($this->redirect($this->Auth->logout())){
+        if ($this->redirect($this->Auth->logout())) {
             $this->Session->setFlash('Logout successful');
-        }else{
+        } else {
             $this->redirect(array('Controller' => 'Users', 'Action' => 'login'));
         }
     }
@@ -80,8 +84,16 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Signup has been completed!'));
-                return $this->redirect(array('action' => 'index'));
+                $createdId = $this->User->getLastInsertId();
+                if (!empty($createdId)) {
+                    $this->loadModel('Profile');
+                    $this->Profile->create();
+                    $this->request->data['Profile']['user_id'] = $createdId;
+                    if ($this->Profile->save($this->request->data)) {
+                        $this->Session->setFlash(__('Signup has been completed!'));
+                        return $this->redirect(array('action' => 'index'));
+                    }
+                }
             }
             $this->Session->setFlash(__('Registration failed! Try again.'));
         }
