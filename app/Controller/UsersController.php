@@ -17,6 +17,9 @@ class UsersController extends AppController
     {
         //forgetPassword access without authentication
         $this->Auth->allow('forgetPassword', 'signup', 'forgetPasswordLast');
+
+        //set bootstrap layout for all methods
+        $this->layout = "bootstrap";
     }
 
     /**
