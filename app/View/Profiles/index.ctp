@@ -2,7 +2,7 @@
 $this->Session->flash();
 ?>
 <h1>Member profile</h1>
-<?php echo $this->Html->link('Update profile', array('controller' => 'Profiles', 'action' => 'update'));?>
+<?php echo $this->Html->link('Update profile', array('controller' => 'Profiles', 'action' => 'edit'));?>
 <hr>
 <table>
     <?php
