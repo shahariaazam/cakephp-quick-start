@@ -42,7 +42,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><?php echo $this->Html->link('Update profile', array('controller'=>'profiles', 'action'=>'index'))?></li>
+                        <li><?php echo $this->Html->link('Update profile', array('controller'=>'profiles', 'action'=>'edit'))?></li>
                         <li><?php echo $this->Html->link('Change Password', array('controller'=>'users', 'action'=>'changePassword'))?></li>
                         <li><?php echo $this->Html->link('View Profile', array('controller'=>'profiles', 'action'=>'index'))?></li>
                         <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'))?></li>
