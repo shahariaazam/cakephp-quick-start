@@ -13,6 +13,11 @@ App::uses('Controller', 'Controller');
 
 class ProfilesController extends AppController
 {
+    function beforeFilter()
+    {
+        $this->layout = "bootstrap-member";
+    }
+
     public function index()
     {
         $profileInfo = $this->Profile->find('first',array('conditions'=>array('Profile.user_id' => $this->Auth->User('id'))));
