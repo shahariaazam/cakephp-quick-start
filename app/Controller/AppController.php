@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $components = array('Auth', 'Session', 'Cookie', 'DebugKit.Toolbar');
+    public $components = array('Auth', 'Session', 'Cookie');
 
     public function send_mail($receiver = null, $name = null, $pass = null)
     {
