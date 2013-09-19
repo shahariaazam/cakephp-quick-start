@@ -20,7 +20,7 @@ class SessionHelper extends AppHelper
             }
 
             if ($flash['element'] === 'default') {
-                $class = 'warning';
+                $class = 'success';
                 if (!empty($flash['params']['class'])) {
                     $class = $flash['params']['class'];
                 }
