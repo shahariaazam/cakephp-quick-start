@@ -1,27 +1,28 @@
-<?php echo $this->Session->flash();?>
-<hr>
 <h4>Change Password</h4>
-<p>
-    <?php echo $this->Html->link('Profile', array('controller'=>'Profiles', 'action'=>'index'));?> &raquo; <?php echo $this->Html->link('Profile Update', array('controller'=>'Profiles', 'action'=>'edit'));?> &raquo; <?php echo $this->Html->link('Change Password', array('controller'=>'Users', 'action'=>'changePassword'));?> &raquo; <?php echo $this->Html->link('Logout', array('controller'=>'Users', 'action'=>'logout'));?>
-</p>
     <hr>
-    <?php echo $this->Form->create('Users');?>
-<table>
-    <tr>
-        <td>Old Password</td>
-        <td><?php echo $this->Form->input('password');?></td>
-    </tr>
-    <tr>
-        <td>New Password</td>
-        <td><?php echo $this->Form->input('newpassword', array('type'=>'password'));?></td>
-    </tr>
-    <tr>
-        <td>Re-type Password</td>
-        <td><?php echo $this->Form->input('renewpassword', array('type'=>'password'));?></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><?php echo $this->Form->submit();?></td>
-    </tr>
-</table>
-    <?php echo $this->Form->end();?>
+<?php echo $this->Form->create('User', array('class'=>'form-horizontal', 'role'=>'form'));?>
+<div class="form-group">
+    <label for="username" class="col-lg-2 control-label">Existing Password</label>
+    <div class="col-lg-4">
+        <?php echo $this->Form->input('password', array('div'=>false, 'label'=>false, 'class'=>'form-control'));?>
+    </div>
+</div>
+<div class="form-group">
+    <label for="username" class="col-lg-2 control-label">Existing Password</label>
+    <div class="col-lg-4">
+        <?php echo $this->Form->input('newpassword', array('div'=>false, 'label'=>false, 'class'=>'form-control'));?>
+    </div>
+</div>
+<div class="form-group">
+    <label for="username" class="col-lg-2 control-label">Existing Password</label>
+    <div class="col-lg-4">
+        <?php echo $this->Form->input('renewpassword', array('div'=>false, 'label'=>false, 'class'=>'form-control'));?>
+    </div>
+</div>
+<div class="form-group">
+    <label for="login" class="col-lg-2 control-label"></label>
+    <div class="col-lg-4">
+        <?php echo $this->Form->submit('Change Password', array('div'=>false, 'label'=>false, 'class'=>'btn btn-default'));?>
+    </div>
+</div>
+<?php echo $this->Form->end();?>
