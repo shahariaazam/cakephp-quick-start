@@ -6,7 +6,7 @@
     ?>
         <div class="form-group">
             <label for="username" class="col-lg-2 control-label"><?php echo Inflector::humanize($key);?></label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <?php echo $this->Form->input($key, array('value'=>$value,'div'=>false, 'label'=>false, 'class'=>'form-control'));?>
             </div>
         </div>

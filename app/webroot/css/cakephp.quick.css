@@ -1,47 +1,5 @@
-body > .row {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-.sidebar{
-    background-color: #E9E9E9;
-    position: fixed;
-    height: 100%;
-    color: #444444;
-    -moz-box-shadow:    0px 0px 0px 2px #E2E2E2;
-    -webkit-box-shadow: 0px 0px 0px 2px #E2E2E2;
-    box-shadow:         0px 0px 0px 2px #E2E2E2;
-}
-.sidebar .text-panel{
-    padding: 50px 10% 10%;
-    bottom: 0;
-}
-.sidebar .img-circle{
-    margin: 0px;
-
-    border: 1px solid #ffffff;
-    -moz-box-shadow:    0px 0px 8px 4px #FFFFFF;
-    -webkit-box-shadow: 0px 0px 8px 4px #FFFFFF;
-    box-shadow:         0px 0px 8px 4px #FFFFFF;
-}
-
-.navbar-default{
-    background-color: #ffffff;
-    border: none;
-    border-bottom: 1px solid #c2c2c2;
-}
-.navbar{
-    border-radius: 0px;
-}
-
-.loginForm{
-    margin-top: 20%;
-}
-.loginForm h3{
-    margin-left: 20%;
-}
-@media (max-width: 1200px){
-    .sidebar{
-        position: static;
-        height: inherit;
-    }
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
