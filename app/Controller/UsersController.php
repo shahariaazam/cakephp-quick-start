@@ -28,13 +28,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->User->recursive = 0;
-        $this->set(
-            'users',
-            $this->User->find('first', array('conditions' => array('User.id' => $this->Auth->user('id'))))
-        );
-        $this->set('title_for_layout', "Member area");
-        $this->Session->setFlash('Welcome to your member area!');
+        $this->redirect(array('controller' => 'Profiles', 'action' => 'index'));
     }
 
     /**
@@ -48,7 +42,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->setFlash('Login successfully');
-                $this->redirect(array('controller' => 'Users', 'action' => 'index'));
+                $this->redirect(array('controller' => 'Profiles', 'action' => 'index'));
             } else {
                 $this->Session->setFlash("Login failed");
             }
