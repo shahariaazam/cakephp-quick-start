@@ -34,10 +34,6 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-lg-offset-3">
         <div class="contentMain">
             <?php echo $this->Session->flash();?>
-            <!--<div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Hi <a href="#" class="alert-link">...</a>
-            </div>-->
             <?php echo $this->fetch('content'); //Our main application content goes here?>
         </div>
     </div>
