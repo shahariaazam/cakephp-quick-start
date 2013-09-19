@@ -32,6 +32,13 @@ body > .row {
 .navbar{
     border-radius: 0px;
 }
+
+.loginForm{
+    margin-top: 20%;
+}
+.loginForm h3{
+    margin-left: 20%;
+}
 @media (max-width: 1200px){
     .sidebar{
         position: static;

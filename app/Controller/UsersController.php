@@ -19,7 +19,7 @@ class UsersController extends AppController
         $this->Auth->allow('forgetPassword', 'signup', 'forgetPasswordLast');
 
         //set bootstrap layout for all methods
-        $this->layout = "bootstrap";
+        $this->layout = "bootstrap-member";
     }
 
     /**
@@ -44,7 +44,7 @@ class UsersController extends AppController
     public function login()
     {
         $this->set('title_for_layout', "Authenticate yourself");
-
+        $this->layout = "bootstrap-login";
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->setFlash('Login successfully');

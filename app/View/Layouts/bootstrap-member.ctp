@@ -62,7 +62,9 @@
             </div>
         </div>
         <!--@Navigation end-->
-        <?php echo $this->fetch('content'); //Our main application content goes here?>
+        <div class="contentMain">
+            <?php echo $this->fetch('content'); //Our main application content goes here?>
+        </div>
     </div>
 </div>
 <!-- Bootstrap core JavaScript
