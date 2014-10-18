@@ -30,7 +30,7 @@ class ProfilesController extends AppController
      */
     public function edit($id = null)
     {
-        if($this->request->is('put')){
+        if($this->request->is('put') || $this->request->is('post')){
             $this->Profile->id = $this->request->data['Profile']['id'];
             if($this->Profile->saveAll($this->request->data)){
                 $this->Session->setFlash("Profile has been update");

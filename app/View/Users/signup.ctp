@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $this View
+ */
+?>
 <?php echo $this->Session->flash();?>
 <div class="users form">
     <?php echo $this->Form->create('User'); ?>

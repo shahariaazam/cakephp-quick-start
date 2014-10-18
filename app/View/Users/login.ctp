@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $this View
+ */
+?>
 <div class="loginForm col-lg-offset-3">
     <h3>Login to access!</h3>
     <p>

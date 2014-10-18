@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $this View
+ */
+?>
 <h1>Member profile</h1>
 <hr>
 <table class="table table-stripped">

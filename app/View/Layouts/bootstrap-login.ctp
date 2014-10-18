@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $this View
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +61,7 @@
             This is the instruction set for your application for each methods. You can write down here the way about how to interact with your application. Also you can put anything here.
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
+            <?php echo $this->Session->flash();?>
             <?php echo $this->fetch('content');?>
         </div>
     </div>

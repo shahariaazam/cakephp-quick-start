@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $this View
+ */
+?>
 <h1>Member profile</h1>
 <hr>
 <?php echo $this->Form->create('Profile', array('class'=>'form-horizontal', 'role'=>'form'));?>
