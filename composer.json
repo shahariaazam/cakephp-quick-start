@@ -1,0 +1,19 @@
+{
+    "name": "shahariaazam/cakephp-quick-start",
+    "description": "CakePHP Skeleton - Quick start your CakePHP Application",
+    "keywords": ["cakephp", "skeleton", "quick-start"],
+    "homepage": "https://github.com/shaharia/cakephp-quick-start",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shaharia Azam",
+            "homepage": "http://shahariaazam.com",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "cakephp/cakephp": "2.5.5",
+        "cakephp/debug_kit": "2.2.4",
+        "phpunit/phpunit": "4.3.3"
+    }
+}

@@ -62,6 +62,9 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
+// Composer generated Plugin directory added
+App::build(array('Plugin' => array(ROOT .DS .'Plugin'.DS)));
+
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. make sure you read the documentation on CakePlugin to use more
